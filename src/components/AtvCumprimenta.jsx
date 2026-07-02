@@ -19,69 +19,30 @@ _________________________________
 | É um prazer lhe conhecer...   |
 |_______________________________|
 */
-import React, { useState } from "react";
-import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
+import { useState } from "react";
+import { View, Text, TextInput, Button } from "react-native";
+import styles from "../styles/main";
 export default function AtvCumprimenta() {
   const [nome, setNome] = useState("");
   const [mostrarMensagem, setMostrarMensagem] = useState(false);
+  function salvar() {
+    setMostrarMensagem(true);
+  }
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Olá, qual seu nome?</Text>
-      <View style={styles.linha}>
-        <TextInput
-          style={styles.input}
-          placeholder="Nome aqui"
-          value={nome}
-          onChangeText={setNome}/>
-        <Pressable
-          style={styles.botao}
-          onPress={() => setMostrarMensagem(true)}>
-          <Text style={styles.textoBotao}>Salvar</Text>
-        </Pressable>
-      </View>
+      <Text>Digite seu nome:</Text>
+      <TextInput
+        style={styles.input}
+        value={nome}
+        onChangeText={setNome}
+        placeholder="Seu nome"
+      />
+      <Button title="Salvar" onPress={salvar} />
+      {mostrarMensagem && (
         <Text style={styles.mensagem}>
           É um prazer lhe conhecer, {nome}
         </Text>
-      )
+      )}
     </View>
   );
 }
-const styles = StyleSheet.create({
-  container: 
-  {
-    padding: 20,
-  },
-  titulo: 
-  {
-    fontSize: 18,
-    marginBottom: 15,
-  },
-  linha:
-   {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 15,
-  },
-  input:
-   {
-    flex: 1,
-    borderWidth: 1,
-    borderColor: "#a12424",
-    padding: 8,
-    marginRight: 10,
-  },
-  botao:
-   {
-    backgroundColor: "#1decae",
-    paddingVertical: 15,
-    paddingHorizontal: 16,
-  },
-  textoBotao:
-   {
-    fontWeight: "bold",
-  },
-  mensagem: 
-  {
-    fontSize: 18,
-  },
-});
