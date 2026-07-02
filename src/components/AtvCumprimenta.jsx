@@ -19,3 +19,30 @@ _________________________________
 | É um prazer lhe conhecer...   |
 |_______________________________|
 */
+import { useState } from "react";
+import { View, Text, TextInput, Button } from "react-native";
+import styles from "../styles/main";
+export default function AtvCumprimenta() {
+  const [nome, setNome] = useState("");
+  const [mostrarMensagem, setMostrarMensagem] = useState(false);
+  function salvar() {
+    setMostrarMensagem(true);
+  }
+  return (
+    <View style={styles.container}>
+      <Text>Digite seu nome:</Text>
+      <TextInput
+        style={styles.input}
+        value={nome}
+        onChangeText={setNome}
+        placeholder="Seu nome"
+      />
+      <Button title="Salvar" onPress={salvar} />
+      {mostrarMensagem && (
+        <Text style={styles.mensagem}>
+          É um prazer lhe conhecer, {nome}
+        </Text>
+      )}
+    </View>
+  );
+}
