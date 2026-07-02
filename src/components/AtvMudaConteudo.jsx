@@ -8,8 +8,53 @@ Ao clicar no segundo <Pressable>, o conteúdo dessa <View> deve ser substituído
 onde cada uma destas <Views> deve ter o tamanho de 200px de altura por 200px de largura, 
 a da esquerda deve ter a cor "purple", a do meio a cor "teal" e a da direita a cor "orange".
 */
-import React, { useState } from "react";
-import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
+import { useState } from "react";
+import { View, Text, Pressable } from "react-native";
+
 export default function AtvMudaConteudo() {
-    
+  const [mostrarTexto, setMostrarTexto] = useState(true);
+
+  return (
+    <View>
+      {/*Botões*/}
+      <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
+        <Pressable onPress={() => setMostrarTexto(true)}>
+          <Text>Botão 1</Text>
+        </Pressable>
+        <Pressable onPress={() => setMostrarTexto(false)}>
+          <Text>Botão 2</Text>
+        </Pressable>
+      </View>
+      {/*Conteúdo*/}
+      <View style={{ marginTop: 20 }}>
+        {mostrarTexto ? (
+          <Text>Página em construção</Text>
+        ) : (
+          <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+            <View
+              style={{
+                width: 200,
+                height: 200,
+                backgroundColor: "purple",
+              }}
+            />
+            <View
+              style={{
+                width: 200,
+                height: 200,
+                backgroundColor: "teal",
+              }}
+            />
+            <View
+              style={{
+                width: 200,
+                height: 200,
+                backgroundColor: "orange",
+              }}
+            />
+          </View>
+        )}
+      </View>
+    </View>
+  );
 }
