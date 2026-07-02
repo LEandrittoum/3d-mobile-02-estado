@@ -10,13 +10,10 @@ a da esquerda deve ter a cor "purple", a do meio a cor "teal" e a da direita a c
 */
 import { useState } from "react";
 import { View, Text, Pressable } from "react-native";
-
 export default function AtvMudaConteudo() {
   const [mostrarTexto, setMostrarTexto] = useState(true);
-
   return (
     <View>
-      {/*Botões*/}
       <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
         <Pressable onPress={() => setMostrarTexto(true)}>
           <Text>Botão 1</Text>
@@ -25,7 +22,6 @@ export default function AtvMudaConteudo() {
           <Text>Botão 2</Text>
         </Pressable>
       </View>
-      {/*Conteúdo*/}
       <View style={{ marginTop: 20 }}>
         {mostrarTexto ? (
           <Text>Página em construção</Text>
