@@ -19,3 +19,28 @@ _________________________________
 | É um prazer lhe conhecer...   |
 |_______________________________|
 */
+import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
+import { useState } from 'react'
+
+export default function AtvCumprimenta() {
+const [nome, setNome] = useState("")
+const [exibido, setExibido] = useState("")
+  const clique = () => {
+    setExibido(nome)
+  }
+    return(
+<View >
+        <Text>Olá, qual é seu nome?</Text>
+            <View>
+                <TextInput
+                    value={nome}
+                    onChangeText={setNome}
+                    placeholder="Nome aqui"/>
+                    <Pressable onPress={clique}>
+                      <Text>SALVAR</Text>
+                    </Pressable>
+            </View>
+            <Text>É um prazer lhe conhecer, {exibido}</Text>
+</View>
+    )
+}
