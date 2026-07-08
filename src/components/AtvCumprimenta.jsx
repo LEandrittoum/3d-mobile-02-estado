@@ -19,3 +19,54 @@ _________________________________
 | É um prazer lhe conhecer...   |
 |_______________________________|
 */
+
+import React, { useState } from "react";
+import { View, Text, TextInput, Pressable } from "react-native";
+
+export default function AtvCumprimenta() {
+  const [nome, setNome] = useState("");
+  const [mensagem, setMensagem] = useState("");
+
+  function salvarNome() {
+    setMensagem(`É um prazer lhe conhecer, ${nome}`);
+  }
+
+  return (
+    <View style={{ padding: 20 }}>
+      <Text style={{ marginBottom: 10 }}>
+        EAE, qual é a sua graça?
+      </Text>
+
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <TextInput
+          style={{
+            borderWidth: "1px",
+            width: "200px",
+            padding: "8px",
+            marginRight: "10px",
+          }}
+          placeholder="Nome aqui"
+          value={nome}
+          onChangeText={setNome}
+        />
+
+        <Pressable
+          style={{
+            backgroundColor: "#7727c2",
+            padding: "10px",
+            borderRadius: "5px",
+          }}
+          onPress={salvarNome}
+        >
+          <Text>Salvar</Text>
+        </Pressable>
+      </View>
+
+      {mensagem !== "" && (
+        <Text style={{ marginTop: 20 }}>
+          {mensagem}
+        </Text>
+      )}
+    </View>
+  );
+}
