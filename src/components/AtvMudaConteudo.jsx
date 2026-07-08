@@ -9,65 +9,33 @@ onde cada uma destas <Views> deve ter o tamanho de 200px de altura por 200px de 
 a da esquerda deve ter a cor "purple", a do meio a cor "teal" e a da direita a cor "orange".
 */
 
-import { View, Text, Pressable, StyleSheet } from 'react-native'
-import { useState } from 'react'
+import React, { useState } from "react";
+import { View, Text, Pressable } from "react-native";
 
-// Estilos de "CSS"
-const estilo = StyleSheet.create({
-  view: {
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: "10px",
-    backgroundColor: "#303540",
-    padding: "10px",
-    margin: "10px",
-    gap: "10px",
-  },
-  texto: {
-    color: "#eee",
-    fontSize: "32px",
-  },
-  textoBotao: {
-    color: "#eee",
-    fontSize: "16px",
-  },
-  botao: {
-    borderRadius: "5px",
-    backgroundColor: "#505560",
-    padding: "10px",
-    margin: "10px",
-  },
-  viewBotaozin: {
-    display: "flex",
-    flexDirection: "row",
-    flex: "1 0",
-    width: "200px",
-    justifyContent: "center",
-    alignItems: "center",
-  }
-})
+export default function AtvMudaConteudo(){
+    const [pagina, setPagina] = useState("");
 
-export default function AtvMudaConteudo() {
-  // Criação da variável "dobro" e da função que altera seu valor
-  const [dobro, setDobro] = useState(1)
-
-  // Funções que vão ser executadas pelos botões
-  function dobrar() {
-    setDobro(dobro * 2)
-  }
-
-
-  // Parte visual do componente
-  return(
-    <View style={estilo.view}>
-      <Text style={estilo.texto}>
-        {dobro}
-      </Text>
-      <View style={estilo.viewBotoes}>
-        <Pressable style={estilo.botao} onPress={() => dobrar()}>
-          <Text style={estilo.textoBotao}>dobrou</Text>
+return(
+  <View>{} 
+    <View style={{ flexDirection: "row", gap: 10 }}> 
+        <Pressable onPress={() => setPagina("texto")}>
+            <Text>Página 1</Text> 
+        </Pressable> 
+        <Pressable onPress={() => setPagina("cores")}>
+            <Text>Página 2</Text>
         </Pressable>
+      </View>{}
+
+    <View style={{ marginTop: 20 }}>{
+    pagina === "texto" && ( 
+    <Text>Página em construção</Text> )}{
+    pagina === "cores" && ( 
+
+    <View style={{ flexDirection: "row" }}>
+        <View style={{ width: "200px", height: "200px", backgroundColor: "dark blue", }}/>
+        <View style={{ width: "200px", height: "200px", backgroundColor: "green", }}/>
+      <View style={{ width: "200px", height: "200px", backgroundColor: "yellow", }}/>
+
+      </View> )}
       </View>
-    </View>
-  )
-}
+    </View> ) };
