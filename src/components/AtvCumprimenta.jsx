@@ -19,30 +19,68 @@ _________________________________
 | É um prazer lhe conhecer...   |
 |_______________________________|
 */
-import { useState } from "react";
-import { View, Text, TextInput, Button } from "react-native";
-import styles from "../styles/main";
-export default function AtvCumprimenta() {
-  const [nome, setNome] = useState("");
-  const [mostrarMensagem, setMostrarMensagem] = useState(false);
-  function salvar() {
-    setMostrarMensagem(true);
+import { View, Text, Pressable, StyleSheet, TextInput} from 'react-native'
+import { useState } from 'react'
+//CSS
+const estilo = StyleSheet.create({
+  view: {
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: "10px",
+    backgroundColor: "#303540",
+    padding: "10px",
+    margin: "10px",
+    gap: "10px",
+  },
+  texto: {
+    color: "#eee",
+    fontSize: "32px",
+  },
+  textoBotao: {
+    color: "#eee",
+    fontSize: "16px",
+  },
+  botao: {
+    borderRadius: "5px",
+    backgroundColor: "#505560",
+    padding: "10px",
+    margin: "10px",
+  },
+  viewBotoes: {
+    display: "flex",
+    flexDirection: "row",
+    flex: "1 0",
+    width: "100%",
+    justifyContent: "space-between",
+    alignItems: "center",
   }
-  return (
-    <View style={styles.container}>
-      <Text>Digite seu nome:</Text>
-      <TextInput
-        style={styles.input}
-        value={nome}
-        onChangeText={setNome}
-        placeholder="Seu nome"
+})
+export default function AtvCumprimenta() {
+ const [texto, setValorAtual] = useState('');
+
+ function novonome() {
+    setValorAtual()
+  }
+  function perderPonto() {
+    setPlacar(placar - 1)
+  }
+  return(
+    <View style={estilo.view}>
+      <Text style={estilo.texto}>
+        "Olá, qual seu nome?"
+      </Text>
+         <TextInput 
+        placeholder="Digite um nome"
+        onChangeText={(texto) => setValorAtual(texto)}
       />
-      <Button title="Salvar" onPress={salvar} />
-      {mostrarMensagem && (
-        <Text style={styles.mensagem}>
-          É um prazer lhe conhecer, {nome}
-        </Text>
-      )}
+       <Pressable style={estilo.botao} onPress={() => console.log("")}>
+        </Pressable>
+
+      <View style={estilo.viewBotoes}>
+        <Pressable style={estilo.botao} onPress={() => Dobrar()}>
+          <Text style={estilo.textoBotao}>dobrar</Text>
+        </Pressable>
+      </View>
     </View>
-  );
+  )
 }

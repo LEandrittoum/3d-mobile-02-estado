@@ -8,44 +8,44 @@ Ao clicar no segundo <Pressable>, o conteúdo dessa <View> deve ser substituído
 onde cada uma destas <Views> deve ter o tamanho de 200px de altura por 200px de largura, 
 a da esquerda deve ter a cor "purple", a do meio a cor "teal" e a da direita a cor "orange".
 */
-import { useState } from "react";
-import { View, Text, Pressable } from "react-native";
+import React, { useState } from 'react';
+import { View, Text, Pressable } from 'react-native';
 export default function AtvMudaConteudo() {
-  const [mostrarTexto, setMostrarTexto] = useState(true);
+  const [pagina, setPagina] = useState(1);
   return (
     <View>
-      <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
-        <Pressable onPress={() => setMostrarTexto(true)}>
-          <Text>Botão 1</Text>
+      <View style={{ flexDirection: 'row' }}>
+        <Pressable onPress={() => setPagina(1)}>
+          <Text>Primeiro</Text>
         </Pressable>
-        <Pressable onPress={() => setMostrarTexto(false)}>
-          <Text>Botão 2</Text>
+        <Pressable onPress={() => setPagina(2)}>
+          <Text>Segundo</Text>
         </Pressable>
       </View>
-      <View style={{ marginTop: 20 }}>
-        {mostrarTexto ? (
+      <View>
+        {pagina === 1 ? (
           <Text>Página em construção</Text>
         ) : (
-          <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <View style={{ flexDirection: 'row' }}>
             <View
               style={{
                 width: 200,
                 height: 200,
-                backgroundColor: "purple",
+                backgroundColor: 'purple',
               }}
             />
             <View
               style={{
                 width: 200,
                 height: 200,
-                backgroundColor: "teal",
+                backgroundColor: 'teal',
               }}
             />
             <View
               style={{
                 width: 200,
                 height: 200,
-                backgroundColor: "orange",
+                backgroundColor: 'orange',
               }}
             />
           </View>
