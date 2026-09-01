@@ -1,3 +1,4 @@
+a
 // Elementos necessários para o componente
 import { View, Text, Pressable, StyleSheet, TextInput } from 'react-native'
 import { useState } from 'react'
