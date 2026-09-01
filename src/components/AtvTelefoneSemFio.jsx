@@ -7,44 +7,60 @@ Cada <Pressable> ao ser clicado, deve inserir na <View> abaixo um <Text> e um <T
 e substituir o conteúdo anterior dessa <View> de baixo dos botões.
 O texto digitado no <TextInput> ativado por um <Pressable> deve ser exibido no <Text> do outro <Pressable>, e vice-versa.
 */
-import { useState } from "react";
-import { View, Text, TextInput, Button } from "react-native";
-import styles from "../styles/main";
-export default function AtvTelefoneSemFio() {
-  const [ativo, setAtivo] = useState("A");
-  const [textoA, setTextoA] = useState("");
-  const [textoB, setTextoB] = useState("");
-  return (
-    <View style={styles.container}>
-      <Button
-        title="Botão A"
-        onPress={() => setAtivo("A")}
-      />
-      <Button
-        title="Botão B"
-        onPress={() => setAtivo("B")}
-      />
-      {ativo === "A" ? (
+import { View, Text, Pressable, StyleSheet, TextInput } from 'react-native'
+import { useState } from 'react'
+
+
+export default function AtvTelefoneSemFio(){
+   
+
+    const [pagina, setPagina] = useState("");
+const [texto1, setTexto1] = useState("");
+const [texto2, setTexto2] = useState("");
+
+
+return(
+<View>
+    <View style={{ flexDirection: "row" }}>
+    <Pressable onPress={() => setPagina("1")}>
+        <Text>Botão 1</Text>
+    </Pressable>
+
+    <Pressable onPress={() => setPagina("2")}>
+        <Text>Botão 2</Text>
+    </Pressable>
+</View>
+
+<View style={{ marginTop: 20 }}>
+
+    {pagina === "1" && (
         <View>
-          <Text>{textoB}</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Digite..."
-            value={textoA}
-            onChangeText={setTextoA}
-          />
+            <Text>{texto2}</Text>
+
+            <TextInput
+                value={texto1}
+                onChangeText={setTexto1}
+                placeholder="insira o texto"
+            />
         </View>
-      ) : (
+    )}
+
+    {pagina === "2" && (
         <View>
-          <Text>{textoA}</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Digite..."
-            value={textoB}
-            onChangeText={setTextoB}
-          />
+            <Text>{texto1}</Text>
+
+            <TextInput
+                value={texto2}
+                onChangeText={setTexto2}
+                placeholder="insira o texto "
+            />
         </View>
-      )}
-    </View>
-  );
-}
+    )}
+
+</View>
+      
+</View>
+
+    )
+    
+    }
