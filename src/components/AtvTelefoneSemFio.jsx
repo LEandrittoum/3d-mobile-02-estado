@@ -8,68 +8,60 @@ e substituir o conteúdo anterior dessa <View> de baixo dos botões.
 O texto digitado no <TextInput> ativado por um <Pressable> deve ser exibido no <Text> do outro <Pressable>, e vice-versa.
 */
 
-import React, { useState } from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { View, Text, Pressable, StyleSheet, TextInput } from 'react-native'
+import { useState } from 'react'
 
-export default function AtvMudaConteudo() {
-  const [conteudo, setConteudo] = useState('');
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.botoes}>
-        <Pressable
-          style={styles.botao}
-          onPress={() => setConteudo('texto')}
-        >
-          <Text>Página</Text>
-        </Pressable>
+export default function AtvTelefoneSemFio(){
+   
 
-        <Pressable
-          style={styles.botao}
-          onPress={() => setConteudo('cores')}
-        >
-          <Text>Cores</Text>
-        </Pressable>
-      </View>
+    const [pagina, setPagina] = useState("");
+const [texto1, setTexto1] = useState("");
+const [texto2, setTexto2] = useState("");
 
-      <View style={styles.areaConteudo}>
-        {conteudo === 'texto' && (
-          <Text>Página em construção</Text>
-        )}
 
-        {conteudo === 'cores' && (
-          <View style={styles.coresContainer}>
-            <View style={[styles.quadrado, { backgroundColor: 'purple' }]} />
-            <View style={[styles.quadrado, { backgroundColor: 'teal' }]} />
-            <View style={[styles.quadrado, { backgroundColor: 'orange' }]} />
-          </View>
-        )}
-      </View>
-    </View>
-  );
-}
+return(
+<View>
+    <View style={{ flexDirection: "row" }}>
+    <Pressable onPress={() => setPagina("1")}>
+        <Text>Botão 1</Text>
+    </Pressable>
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-  },
-  botoes: {
-    flexDirection: 'row',
-    marginBottom: 20,
-  },
-  botao: {
-    borderWidth: 1,
-    padding: 10,
-    marginRight: 10,
-  },
-  areaConteudo: {
-    marginTop: 10,
-  },
-  coresContainer: {
-    flexDirection: 'row',
-  },
-  quadrado: {
-    width: 200,
-    height: 200,
-  },
-});
+    <Pressable onPress={() => setPagina("2")}>
+        <Text>Botão 2</Text>
+    </Pressable>
+</View>
+
+<View style={{ marginTop: 20 }}>
+
+    {pagina === "1" && (
+        <View>
+            <Text>{texto2}</Text>
+
+            <TextInput
+                value={texto1}
+                onChangeText={setTexto1}
+                placeholder="insira o texto"
+            />
+        </View>
+    )}
+
+    {pagina === "2" && (
+        <View>
+            <Text>{texto1}</Text>
+
+            <TextInput
+                value={texto2}
+                onChangeText={setTexto2}
+                placeholder="insira o texto "
+            />
+        </View>
+    )}
+
+</View>
+      
+</View>
+
+    )
+    
+    }

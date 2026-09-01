@@ -10,67 +10,48 @@ a da esquerda deve ter a cor "purple", a do meio a cor "teal" e a da direita a c
 */
 
 import React, { useState } from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
-
+import { View, Text, Pressable } from 'react-native';
 export default function AtvMudaConteudo() {
-  const [conteudo, setConteudo] = useState('');
-
+  const [pagina, setPagina] = useState(1);
   return (
-    <View style={styles.container}>
-      <View style={styles.botoes}>
-        <Pressable
-          style={styles.botao}
-          onPress={() => setConteudo('texto')}
-        >
-          <Text>Página</Text>
+    <View>
+      <View style={{ flexDirection: 'row' }}>
+        <Pressable onPress={() => setPagina(1)}>
+          <Text>Primeiro</Text>
         </Pressable>
-
-        <Pressable
-          style={styles.botao}
-          onPress={() => setConteudo('cores')}
-        >
-          <Text>Cores</Text>
+        <Pressable onPress={() => setPagina(2)}>
+          <Text>Segundo</Text>
         </Pressable>
       </View>
-
-      <View style={styles.areaConteudo}>
-        {conteudo === 'texto' && (
+      <View>
+        {pagina === 1 ? (
           <Text>Página em construção</Text>
-        )}
-
-        {conteudo === 'cores' && (
-          <View style={styles.coresContainer}>
-            <View style={[styles.quadrado, { backgroundColor: 'purple' }]} />
-            <View style={[styles.quadrado, { backgroundColor: 'teal' }]} />
-            <View style={[styles.quadrado, { backgroundColor: 'orange' }]} />
+        ) : (
+          <View style={{ flexDirection: 'row' }}>
+            <View
+              style={{
+                width: 200,
+                height: 200,
+                backgroundColor: 'purple',
+              }}
+            />
+            <View
+              style={{
+                width: 200,
+                height: 200,
+                backgroundColor: 'teal',
+              }}
+            />
+            <View
+              style={{
+                width: 200,
+                height: 200,
+                backgroundColor: 'orange',
+              }}
+            />
           </View>
         )}
       </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-  },
-  botoes: {
-    flexDirection: 'row',
-    marginBottom: 20,
-  },
-  botao: {
-    borderWidth: 1,
-    padding: 10,
-    marginRight: 10,
-  },
-  areaConteudo: {
-    marginTop: 10,
-  },
-  coresContainer: {
-    flexDirection: 'row',
-  },
-  quadrado: {
-    width: 200,
-    height: 200,
-  },
-});

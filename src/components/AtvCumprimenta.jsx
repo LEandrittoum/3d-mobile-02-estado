@@ -19,54 +19,68 @@ _________________________________
 | É um prazer lhe conhecer...   |
 |_______________________________|
 */
-import React, { useState } from 'react';
-import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native';
-
-export default function AtvCumprimenta() {
-  const [nome, setNome] = useState('');
-  const [mensagem, setMensagem] = useState('');
-
-  const lidarComPressao = () => {
-    setMensagem(`É um prazer lhe conhecer, ${nome}`);
-  };
-
-  return (
-    <View style={styles.container}>
-      <Text>Olá, qual seu nome?</Text>
-      
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Nome aqui"
-          onChangeText={setNome}
-          value={nome}
-        />
-        <Pressable style={styles.botao} onPress={lidarComPressao}>
-          <Text>Salvar</Text>
-        </Pressable>
-      </View>
-
-      {mensagem !== '' && <Text>{mensagem}</Text>}
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
+import { View, Text, Pressable, StyleSheet, TextInput} from 'react-native'
+import { useState } from 'react'
+//CSS
+const estilo = StyleSheet.create({
+  view: {
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: "10px",
+    backgroundColor: "#303540",
+    padding: "10px",
+    margin: "10px",
+    gap: "10px",
   },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 10,
+  texto: {
+    color: "#eee",
+    fontSize: "32px",
   },
-  input: {
-    borderBottomWidth: 1,
-    marginRight: 10,
-    flex: 1,
+  textoBotao: {
+    color: "#eee",
+    fontSize: "16px",
   },
   botao: {
-    borderWidth: 1,
-    padding: 5,
+    borderRadius: "5px",
+    backgroundColor: "#505560",
+    padding: "10px",
+    margin: "10px",
   },
-});
+  viewBotoes: {
+    display: "flex",
+    flexDirection: "row",
+    flex: "1 0",
+    width: "100%",
+    justifyContent: "space-between",
+    alignItems: "center",
+  }
+})
+export default function AtvCumprimenta() {
+ const [texto, setValorAtual] = useState('');
+
+ function novonome() {
+    setValorAtual()
+  }
+  function perderPonto() {
+    setPlacar(placar - 1)
+  }
+  return(
+    <View style={estilo.view}>
+      <Text style={estilo.texto}>
+        "Olá, qual seu nome?"
+      </Text>
+         <TextInput 
+        placeholder="Digite um nome"
+        onChangeText={(texto) => setValorAtual(texto)}
+      />
+       <Pressable style={estilo.botao} onPress={() => console.log("")}>
+        </Pressable>
+
+      <View style={estilo.viewBotoes}>
+        <Pressable style={estilo.botao} onPress={() => Dobrar()}>
+          <Text style={estilo.textoBotao}>dobrar</Text>
+        </Pressable>
+      </View>
+    </View>
+  )
+}
