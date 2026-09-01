@@ -19,6 +19,7 @@ _________________________________
 | É um prazer lhe conhecer...   |
 |_______________________________|
 */
+a
 import { View, Text, Pressable, StyleSheet, TextInput} from 'react-native'
 import { useState } from 'react'
 //CSS
