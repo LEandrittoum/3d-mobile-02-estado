@@ -20,53 +20,72 @@ _________________________________
 |_______________________________|
 */
 
-import React, { useState } from "react";
-import { View, Text, TextInput, Pressable } from "react-native";
+import { View, Text, Pressable, StyleSheet, TextInput} from 'react-native'
+import { useState } from 'react'
+
+// Estilos de "CSS"
+const estilo = StyleSheet.create({
+  view: {
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: "10px",
+    backgroundColor: "#303540",
+    padding: "10px",
+    margin: "10px",
+    gap: "10px",
+  },
+  texto: {
+    color: "#eee",
+    fontSize: "32px",
+  },
+  textoBotao: {
+    color: "#eee",
+    fontSize: "16px",
+  },
+  botao: {
+    borderRadius: "5px",
+    backgroundColor: "#505560",
+    padding: "10px",
+    margin: "10px",
+  },
+  viewBotoes: {
+    display: "flex",
+    flexDirection: "row",
+    flex: "1 0",
+    width: "100%",
+    justifyContent: "space-between",
+    alignItems: "center",
+  }
+})
 
 export default function AtvCumprimenta() {
-  const [nome, setNome] = useState("");
-  const [mensagem, setMensagem] = useState("");
+ const [texto, setValorAtual] = useState('');
 
-  function salvarNome() {
-    setMensagem(`É um prazer lhe conhecer, ${nome}`);
+ function novonome() {
+    setValorAtual()
   }
 
-  return (
-    <View style={{ padding: 20 }}>
-      <Text style={{ marginBottom: 10 }}>
-        EAE, qual é a sua graça?
+  function perderPonto() {
+    setPlacar(placar - 1)
+  }
+
+  return(
+    <View style={estilo.view}>
+      <Text style={estilo.texto}>
+        "Olá, qual seu nome?"
       </Text>
+         <TextInput 
+        placeholder="Digite um nome"
+        onChangeText={(texto) => setValorAtual(texto)}
+      />
+       <Pressable style={estilo.botao} onPress={() => console.log("")}>
+        </Pressable>
 
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <TextInput
-          style={{
-            borderWidth: "1px",
-            width: "200px",
-            padding: "8px",
-            marginRight: "10px",
-          }}
-          placeholder="Nome aqui"
-          value={nome}
-          onChangeText={setNome}
-        />
-
-        <Pressable
-          style={{
-            backgroundColor: "#7727c2",
-            padding: "10px",
-            borderRadius: "5px",
-          }}
-          onPress={salvarNome}
-        >
-          <Text>Salvar</Text>
+      <View style={estilo.viewBotoes}>
+        <Pressable style={estilo.botao} onPress={() => Dobrar()}>
+          <Text style={estilo.textoBotao}>dobrar</Text>
         </Pressable>
       </View>
-
-      {mensagem !== "" && (
-        <Text style={{ marginTop: 20 }}>
-          {mensagem}
-        </Text>
-      )}
     </View>
-  );
+  )
 }
